@@ -1,11 +1,9 @@
 package com.example.healthcare_management_system;
 
 import java.sql.*;
+import com.example.healthcare_management_system.databaseConnection;
 
 public class databaseSetup {
-    private static final String url = "jdbc:mysql://localhost:3306/healthcare_management_system";
-    private static final String username = "root";
-    private static final String password = "root";
 
     private static void handleSqlException(SQLException e) {
         int errorCode = e.getErrorCode();
@@ -20,7 +18,7 @@ public class databaseSetup {
     public static void main(String[] args) throws SQLException {
 
         try {
-            Connection connection = DriverManager.getConnection(url, username, password);
+            Connection connection = databaseConnection.getConnection();
             Statement statement = connection.createStatement();
 
             String createUserTable = """ 
