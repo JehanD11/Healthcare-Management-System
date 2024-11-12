@@ -69,7 +69,7 @@ public class UserDAO {
         }
     }
 
-    public Boolean deleteUser(int id) throws SQLException {
+    public boolean deleteUser(int id) throws SQLException {
         int rowsAffected = 0;
         try {
             Connection connection = databaseConnection.getConnection();
@@ -107,5 +107,18 @@ public class UserDAO {
             System.out.println(e.getErrorCode() + " " + e.getMessage());
         }
         return users;
+    }
+
+    public boolean getUserByEmail(String email) throws SQLException {
+        boolean emailExists = false;
+        String query = "select * from users where email = ?";
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {emailExists = true;}
+        } catch (SQLException e) {System.out.println(e.getErrorCode() + " " + e.getMessage());}
+        return emailExists;
     }
 }
