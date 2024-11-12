@@ -26,6 +26,8 @@ public class User {
         this.medical_history = medical_history;
     }
 
+    public void setId(int id) {this.id = id;}
+
     public String getUsername() {return this.username;}
     public void setUsername(String username) {this.username = username;}
 
@@ -48,5 +50,5 @@ public class User {
     public void setAddress(String address) {this.address = address;}
 
     public String getMedical_history() {return this.medical_history;}
-    public void setMedical_history() {this.medical_history = medical_history;}
+    public void setMedical_history(String medical_history) {this.medical_history = medical_history;}
 }
