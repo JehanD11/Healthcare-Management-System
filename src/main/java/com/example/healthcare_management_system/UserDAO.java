@@ -4,11 +4,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.healthcare_management_system.User;
+import com.example.healthcare_management_system.DAO.User;
 
 public class UserDAO {
-    public void addUser(User user) throws SQLException{
+    public boolean addUser(User user) throws SQLException{
         String query = "insert into users(username, email, password, role, specialization, phone, address, medical_history) values(?,?,?,?,?,?,?,?)";
+        int rowsAffected = 0;
         try {
             Connection connection = databaseConnection.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -20,9 +21,11 @@ public class UserDAO {
             preparedStatement.setInt(6, user.getPhone());
             preparedStatement.setString(7, user.getAddress());
             preparedStatement.setString(8, user.getMedical_history());
+            rowsAffected = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + " : " +e.getMessage());
         }
+        return rowsAffected > 0;
     }
 
     public User getUserById(int id) throws SQLException{
