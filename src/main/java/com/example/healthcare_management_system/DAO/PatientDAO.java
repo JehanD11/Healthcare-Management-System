@@ -1,4 +1,4 @@
-package com.example.healthcare_management_system;
+package com.example.healthcare_management_system.DAO;
 
 import com.example.healthcare_management_system.DAO.Patient;
 

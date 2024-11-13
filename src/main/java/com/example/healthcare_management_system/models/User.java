@@ -1,4 +1,4 @@
-package com.example.healthcare_management_system.DAO;
+package com.example.healthcare_management_system.models;
 
 import java.sql.Timestamp;
 

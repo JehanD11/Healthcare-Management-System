@@ -1,10 +1,11 @@
-package com.example.healthcare_management_system;
+package com.example.healthcare_management_system.DAO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.healthcare_management_system.DAO.User;
+import com.example.healthcare_management_system.databaseConnection;
+import com.example.healthcare_management_system.models.User;
 
 public class UserDAO {
     public boolean addUser(User user) throws SQLException{
