@@ -75,4 +75,61 @@ public class AppointmentDAO {
         return appointments;
     }
 
+    public boolean updateAppointment(Appointment appointment) throws SQLException {
+        int rowsAffected = 0;
+        try {
+            Connection connection = databaseConnection.getConnection();
+            String query = "update appointment set patient_id = ?, doctor_id = ?, appointment_date = ?, status = ? where id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, appointment.getPatientID());
+            preparedStatement.setInt(2, appointment.getDoctorId());
+            preparedStatement.setTimestamp(3, appointment.getAppointmentDate());
+            preparedStatement.setString(4, appointment.getStatus());
+            preparedStatement.setInt(5, appointment.getID());
+            rowsAffected = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return rowsAffected > 0;
+    }
+
+    public boolean deleteAppointment(int id) throws SQLException {
+        int rowsAffected = 0;
+
+        String query = "delete from appointment where id = ?";
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            rowsAffected = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return rowsAffected > 0;
+    }
+
+    public List<Appointment> getAppointmentsByPatientId(int patientId) throws SQLException {
+        String query = "select * form appointment where patient_id = ?";
+        List<Appointment> patientAppointments = new ArrayList<>();
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, patientId);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                Appointment appointment = new Appointment(
+                        rs.getInt("id"),
+                        rs.getInt("patient_id"),
+                        rs.getInt("doctor_id"),
+                        rs.getTimestamp("appointment_date"),
+                        rs.getString("reason_for_visit"),
+                        rs.getString("status")
+                );
+                patientAppointments.add(appointment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return patientAppointments;
+    }
 }
