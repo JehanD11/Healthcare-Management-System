@@ -106,6 +106,7 @@ public class UserDAO {
                         rs.getString("address"),
                         rs.getString("medical_history")
                 );
+                users.add(user);
             }
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + " " + e.getMessage());
