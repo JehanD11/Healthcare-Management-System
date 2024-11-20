@@ -55,7 +55,8 @@ public class UserDAO {
         return userInfo;
     }
 
-    public void updateUser(User user) throws SQLException {
+    public boolean updateUser(User user) throws SQLException {
+        int rowsAffected = 0;
         try {
             String query = "update user set username = ?, email = ?, password = ?, role = ?, specialization = ?, phone = ?, address = ?, medical_history = ?, updated_at = ? where id = ?";
             Connection connection = databaseConnection.getConnection();
@@ -68,9 +69,11 @@ public class UserDAO {
             preparedStatement.setInt(6, user.getPhone());
             preparedStatement.setString(7, user.getAddress());
             preparedStatement.setString(8, user.getMedical_history());
+            rowsAffected = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getErrorCode() + " : " +e.getMessage());
         }
+        return rowsAffected > 0;
     }
 
     public boolean deleteUser(int id) throws SQLException {
@@ -126,4 +129,35 @@ public class UserDAO {
         } catch (SQLException e) {System.out.println(e.getErrorCode() + " " + e.getMessage());}
         return emailExists;
     }
+
+    public List<User> getDoctors() throws SQLException {
+        List<User> doctors = new ArrayList<>();
+        String query = "select * from users where role = 'doctor'";
+        User doctor = null;
+
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                doctor = new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getString("specialization"),
+                        rs.getInt("phone"),
+                        rs.getString("address"),
+                        rs.getString("medical_history")
+                );
+                doctors.add(doctor);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + " " + e.getMessage());
+        }
+        return doctors;
+    }
+
+
 }
