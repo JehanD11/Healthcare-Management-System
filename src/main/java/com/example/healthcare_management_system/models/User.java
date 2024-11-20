@@ -26,6 +26,18 @@ public class User {
         this.medical_history = medical_history;
     }
 
+    public User(int id, String username, String password, String email, String role, String specialization, int phone, String address, String medical_history) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.specialization = specialization;
+        this.phone = phone;
+        this.address = address;
+        this.medical_history = medical_history;
+    }
+
     public void setId(int id) {this.id = id;}
 
     public String getUsername() {return this.username;}
