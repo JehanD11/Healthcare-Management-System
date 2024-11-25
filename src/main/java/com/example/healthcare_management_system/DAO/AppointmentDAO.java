@@ -132,4 +132,31 @@ public class AppointmentDAO {
         }
         return patientAppointments;
     }
+
+    public List<Appointment> getAllPendingAppointmentsByDoctorId(int id) throws SQLException {
+        List<Appointment> pendingAppointments = new ArrayList<>();
+        String query = "select * form appointment where id = ? and status = 'Scheduled'";
+        Appointment appointment = null;
+
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                appointment = new Appointment(
+                        rs.getInt("id"),
+                        rs.getInt("patient_id"),
+                        rs.getInt("doctor_id"),
+                        rs.getTimestamp("appointment_date"),
+                        rs.getString("reason_for_visit"),
+                        rs.getString("status")
+                );
+                pendingAppointments.add(appointment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return pendingAppointments;
+    }
 }
