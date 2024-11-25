@@ -159,5 +159,31 @@ public class UserDAO {
         return doctors;
     }
 
-
+    public List<User> getPatients() throws SQLException {
+        List<User> patients = new ArrayList<>();
+        String query = "select * from users where role = 'patient'";
+        User patient = null;
+        try {
+            Connection connection = databaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                patient = new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("role"),
+                        rs.getString("specialization"),
+                        rs.getInt("phone"),
+                        rs.getString("address"),
+                        rs.getString("medical_history")
+                );
+                patients.add(patient);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getErrorCode() + " " + e.getMessage());
+        }
+        return patients;
+    }
 }
