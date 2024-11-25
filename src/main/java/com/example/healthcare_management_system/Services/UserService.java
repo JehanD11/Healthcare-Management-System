@@ -44,6 +44,6 @@ public class UserService {
     }
 
     public List<User> gerAllPatients() throws SQLException {
-
+        return userDAO.getPatients();
     }
 }
