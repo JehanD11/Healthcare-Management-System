@@ -2,10 +2,6 @@ package com.example.healthcare_management_system.models;
 
 import java.sql.*;
 
-import com.example.healthcare_management_system.models.User;
-import com.example.healthcare_management_system.databaseConnection;
-import com.example.healthcare_management_system.DAO.UserDAO;
-
 public class Appointment {
     private int id;
     private int patientId;

@@ -1,8 +1,8 @@
 package com.example.healthcare_management_system.DAO;
 
 import com.example.healthcare_management_system.models.Appointment;
-import com.example.healthcare_management_system.databaseConnection;
-import com.example.healthcare_management_system.models.User;
+import com.example.healthcare_management_system.utils.databaseConnection;
+
 import java.sql.*;
 import java.util.*;
 

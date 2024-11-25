@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.healthcare_management_system.databaseConnection;
+import com.example.healthcare_management_system.utils.databaseConnection;
 import com.example.healthcare_management_system.models.User;
 
 public class UserDAO {

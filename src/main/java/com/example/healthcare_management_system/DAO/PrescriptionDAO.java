@@ -2,11 +2,9 @@ package com.example.healthcare_management_system.DAO;
 
 import java.sql.*;
 import java.util.*;
-import com.example.healthcare_management_system.DAO.*;
-import com.example.healthcare_management_system.models.*;
-import com.example.healthcare_management_system.databaseConnection;
 
-import javax.swing.text.html.HTMLDocument;
+import com.example.healthcare_management_system.models.*;
+import com.example.healthcare_management_system.utils.databaseConnection;
 
 public class PrescriptionDAO {
     public boolean addPrescription(Prescription prescription) throws SQLException{

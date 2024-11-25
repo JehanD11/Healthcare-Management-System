@@ -1,10 +1,6 @@
 package com.example.healthcare_management_system.models;
 
-import java.util.*;
 import java.sql.*;
-import com.example.healthcare_management_system.models.*;
-import com.example.healthcare_management_system.DAO.*;
-import com.example.healthcare_management_system.databaseConnection;
 
 public class Prescription {
     private int id;

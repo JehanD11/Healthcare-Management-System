@@ -1,7 +1,6 @@
-package com.example.healthcare_management_system;
+package com.example.healthcare_management_system.utils;
 
 import java.sql.*;
-import com.example.healthcare_management_system.databaseConnection;
 
 public class databaseSetup {
 

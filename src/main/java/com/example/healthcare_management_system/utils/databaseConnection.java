@@ -1,4 +1,4 @@
-package com.example.healthcare_management_system;
+package com.example.healthcare_management_system.utils;
 
 import java.sql.*;
 
