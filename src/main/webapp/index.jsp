@@ -2,12 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Login</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+     <form action = "login">
+         Enter your username : <input type = "text" name = "username"><br>
+         Enter your password : <input type = "password" name = "password">
+         <input type = "submit">
+     </form>
 </h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
 </body>
 </html>
